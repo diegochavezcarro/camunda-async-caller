@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: camunda-async-caller
+#  main:
+#    allow-bean-definition-overriding:true
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: callCamundaTopic
+          content-type: application/json
+      kafka:
+        binder:
+          brokers: localhost
+
+#Setting the logging levels for the service
+logging:
+  level:
+    com.netflix: WARN
+    org.springframework.web: WARN
+    com.dchavez: DEBUG
+server:
+  port: 8084
+opentracing:
+  jaeger:
+    udp-sender:
+      host: localhost
+      port: 6831
+   
